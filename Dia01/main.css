@@ -1,0 +1,86 @@
+html,
+body {
+  background-color: #f6f6fa;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  overflow-x: auto;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+}
+
+#divContent {
+  width: 100%;
+  display: flex;
+  padding: 10px
+}
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.columns {
+  display: flex;
+  width: 100%;
+  background-color: #46464a;
+  color: white;
+  height: 50px;
+  padding: 10px;
+}
+
+.content {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  background-color: #ddddf7;
+  color: black;
+  cursor: pointer;
+}
+.row:hover {
+  opacity: 0.5;
+}
+.field {
+  text-align: left;
+  padding: 10px;
+  width: 33%;
+}
+
+.column {
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+  width: 33%;
+}
+
+#btnGenerateNews {
+    margin: 10px
+}
