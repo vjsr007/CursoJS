@@ -61,7 +61,8 @@ const renderNews = data => {
 const getNews = () => {
     const url = URLNews.replace('{{topic}}', txtTopic.value === "" ? "bitcoin": txtTopic.value)
     callRestAPI(url).then(resolve => {
-        newsTable.innerHTML = renderNews(JSON.parse(resolve).articles)
+        const news = JSON.parse(resolve);
+        newsTable.innerHTML = renderNews(news.articles)
     })
 }
 
@@ -71,7 +72,7 @@ const initControls = () => {
     txtTopic = document.getElementById("txtTopic");
 }
 
-const initialEvents = () => {
+const initEvents = () => {
     btnGenerateNews.addEventListener("click", () => {
         getNews()
     });
@@ -79,7 +80,7 @@ const initialEvents = () => {
 
 const initApp = () => {
     initControls()
-    initialEvents()
+    initEvents()
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
