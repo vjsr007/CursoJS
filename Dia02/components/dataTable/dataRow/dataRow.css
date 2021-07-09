@@ -1,0 +1,15 @@
+.row {
+    display: flex;
+    width: 100%;
+    background-color: #ddddf7;
+    color: black;
+    cursor: pointer;
+  }
+  .row:hover {
+    opacity: 0.5;
+  }
+  .field {
+    text-align: left;
+    padding: 10px;
+    width: 33%;
+  }
