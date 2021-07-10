@@ -6,7 +6,7 @@
     cursor: pointer;
   }
   .row:hover {
-    opacity: 0.5;
+    background-color: #b4b4c2;
   }
   .field {
     text-align: left;
