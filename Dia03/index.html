@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <link href="main.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="lib/fontawesome/css/font-awesome.min.css"
+    />
+    <script
+      type="module"
+      src="./components/cardContainer/cardContainer.js"
+    ></script>
+    <script type="module" src="./components/dropDown/dropDown.js"></script>
+    <script
+      type="module"
+      src="./components/customInput/customInput.js"
+    ></script>
+    <script
+      type="module"
+      src="./components/customButton/customButton.js"
+    ></script>
+    <script
+      type="module"
+      src="./components/cardContainer/cardComponent/cardComponent.js"
+    ></script>
+    <script>
+      var newsUI = {};
+    </script>
+    <title>Day 03</title>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <div id="filters" class="filters">
+        <div class="header">
+          <label class="title">News API</label>
+          <label class="subtitle">Use filters to get articles</label>
+        </div>
+        <div id="frmFilters" class="form"></div>
+      </div>
+      <div id="content" class="content"></div>
+    </div>
+  </body>
+  <script src="config.js"></script>
+  <script src="model/model.js"></script>
+  <script src="constants.js"></script>
+  <script src="api.js"></script>
+  <script src="services.js"></script>
+  <script src="main.js"></script>
+</html>

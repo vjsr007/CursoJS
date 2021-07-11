@@ -1,0 +1,26 @@
+.component {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #46464a;
+    color: white;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  /* Track */
+:host::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+:host::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+:host::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

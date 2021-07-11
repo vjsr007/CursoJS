@@ -49,7 +49,6 @@ textarea {
   width: 100%;
   background-color: #46464a;
   color: white;
-  height: 50px;
   padding: 10px;
 }
 
@@ -65,7 +64,7 @@ textarea {
   cursor: pointer;
 }
 .row:hover {
-  opacity: 0.5;
+  background-color: #b4b4c2;
 }
 .field {
   text-align: left;

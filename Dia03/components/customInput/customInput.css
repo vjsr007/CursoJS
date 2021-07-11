@@ -1,0 +1,11 @@
+.customInput {
+    position: relative;
+    background-color: #ffffff;
+    color: black;
+    width: 100%;
+    height: 30px;
+    outline: 0;
+    padding: 3px;
+    font-size: 16px;
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
