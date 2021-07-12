@@ -31,9 +31,12 @@ export class DropDown extends HTMLElement {
     this.toggle();
   };
 
-  toggle = () => {
+  toggle = (ev, hide = false) => {
     const shadow = this.shadowRoot;
     this.open = !this.open;
+
+    if (hide) this.open = false;
+
     const options = shadow.getElementById("options");
     options.style.display = this.open ? "inline" : "none";
 
@@ -53,11 +56,8 @@ export class DropDown extends HTMLElement {
     const input = shadow.getElementById("input");
     input.onclick = this.toggle;
 
-    const btnToggle = shadow.getElementById("btnToggle");
-    btnToggle.onclick = this.toggle;
-
-    const list = shadow.getElementById("options");
-    list.onblur = this.toggle;
+    const list = shadow.getElementById("component");
+    list.onblur = (ev) => this.toggle(ev, true);
 
     const options = shadow.querySelectorAll("div.option");
     options.forEach((option) => (option.onclick = this.changeOption));
@@ -85,7 +85,7 @@ export class DropDown extends HTMLElement {
   populate = () => {
     const data = this.data;
     return `
-          <div class="component">
+          <div tabindex="0" id="component" class="component">
             <div id="input" class="input">${this.defaultText}</div>
             <div id="btnToggle" class="button down">
               <i id="toggleIcon" class="fa fa-sort-desc" aria-hidden="true"></i>
