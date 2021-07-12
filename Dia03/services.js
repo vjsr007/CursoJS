@@ -5,56 +5,131 @@ newsUI = {
       api: { get },
       constants: { NEWS_ENDPOINT, SOURCES_ENDPOINT },
       model: { dummyData },
+      controls: {
+        frmFilters,
+        lblTopic,
+        txtTopic,
+        lblSources,
+        cmbSources,
+        btnSearch,
+        cmbDates,
+        lblDates,
+        cmbLanguages,
+        lblLanguages,
+        cmbSortBy,
+        lblSortBy,
+      },
     } = newsUI;
 
-    const initComponents = () => {
-      const form = document.getElementById("frmFilters");
+    const addDays = (date, days) => {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    };
 
-      const txtTopic = document.createElement("custom-input");
-      txtTopic.setAttribute("id", "txtTopic");
+    const formatDate = (date) => {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
 
-      form.appendChild(txtTopic);
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
 
-      const dropdown = document.createElement("drop-down");
-      dropdown.setAttribute("id", "cmbSources");
-      form.appendChild(dropdown);
+      return [year, month, day].join("-");
+    };
 
-      /*
-      get(SOURCES_ENDPOINT).then(data => {
-        dropdown.setAttribute("data", JSON.stringify(data.sources));        
-      });
-      */
+    const getArticles = () => {
+      let articleRequest = {
+        q: txtTopic.get().searchText !== "" ? txtTopic.get().searchText : "*",
+        qInTitle: null,
+        sources:
+          cmbSources.get().currentOption.id != -1
+            ? cmbSources.get().currentOption.id
+            : null,
+        domains: null,
+        excludeDomains: null,
+        from: null,
+        to: null,
+        language:
+          cmbLanguages.get().currentOption.id != -1
+            ? cmbLanguages.get().currentOption.id
+            : null,
+        sortBy:
+          cmbSortBy.get().currentOption.id != -1
+            ? cmbSortBy.get().currentOption.id
+            : null,
+        pageSize: 100,
+        page: 1,
+      };
 
-      const btnSearch = document.createElement("custom-button");
-
-      btnSearch.handleClick = () => {
-        const articleRequest = {
-          q: txtTopic.searchText !== "" ? txtTopic.searchText : "*",
-          qInTitle: null,    
-          sources: dropdown.currentOption.id != -1 ? dropdown.currentOption.id : null,        
-          domains: null,    
-          excludeDomains: null,    
-          from: null,    
-          to: null,    
-          language: null,
-          sortBy: null,    
-          pageSize: null,    
-          page: null,
+      if (cmbDates.get().currentOption.id != -1) {
+        const today = new Date();
+        const to = today.toISOString();
+        let from = formatDate(to);
+        switch (cmbDates.get().currentOption.id) {
+          case "week":
+            from = formatDate(addDays(today, -7).toISOString())
+            break;
+          case "month":
+            from = formatDate(addDays(today, -30).toISOString())
+            break;
         }
-
-        const queryString = Object
-          .keys(articleRequest)
-          .filter(key => articleRequest[key] !== null)
-          .map(key => key + '=' + articleRequest[key]).join('&');
-
-        getNews(queryString).then((resolve) => {
-          const news = resolve;
-          renderNews(news.articles);
-        });
+        articleRequest = { ...articleRequest, from, to };
       }
-      btnSearch.setAttribute("id", "btnSearch");      
 
-      form.appendChild(btnSearch);
+      const queryString = Object.keys(articleRequest)
+        .filter((key) => articleRequest[key] !== null)
+        .map((key) => key + "=" + articleRequest[key])
+        .join("&");
+
+      getNews(queryString).then((resolve) => {
+        const news = resolve;
+        renderNews(news.articles);
+      });
+    };
+
+    const initComponents = () => {
+      const form = frmFilters.get();
+
+      lblTopic.init;
+      form.appendChild(lblTopic.get());
+
+      txtTopic.init;
+      form.appendChild(txtTopic.get());
+
+      lblSources.init;
+      form.appendChild(lblSources.get());
+
+      cmbSources.init;
+      form.appendChild(cmbSources.get());
+
+      lblDates.init;
+      form.appendChild(lblDates.get());
+
+      cmbDates.init;
+      form.appendChild(cmbDates.get());
+
+      lblLanguages.init;
+      form.appendChild(lblLanguages.get());
+
+      cmbLanguages.init;
+      form.appendChild(cmbLanguages.get());
+
+      lblSortBy.init;
+      form.appendChild(lblSortBy.get());
+
+      cmbSortBy.init;
+      form.appendChild(cmbSortBy.get());
+
+      get(SOURCES_ENDPOINT).then(data => {
+        cmbSources.get().setAttribute("data", JSON.stringify(data.sources));        
+      });
+
+      btnSearch.init;
+      btnSearch.get().handleClick = getArticles;
+
+      form.appendChild(btnSearch.get());
 
       const dataTable = document.createElement("card-container");
       dataTable.setAttribute("id", "dtArticles");
@@ -62,7 +137,7 @@ newsUI = {
       const newsTable = document.getElementById("content");
 
       newsTable.innerHTML = dataTable.outerHTML;
-    }
+    };
 
     const renderNews = (data) => {
       const dataTable = document.getElementById("dtArticles");
@@ -71,16 +146,11 @@ newsUI = {
     };
 
     const getNews = (queryString = null) => {
-      return new Promise((resolve, reject) => {
-        resolve(dummyData)
-      });
-      /*
       const url = NEWS_ENDPOINT.replace(
         "{{QUERY_SEARCH}}",
-        queryString ? queryString : "q=*"
+        queryString ? queryString : "q=*&pageSize=100"
       );
       return get(url);
-      */
     };
 
     return { renderNews, getNews, initComponents };

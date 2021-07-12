@@ -1,6 +1,8 @@
 export class CardComponent extends HTMLElement {
   data = null;
 
+  options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
   static get observedAttributes() {
     return ["data"];
   }
@@ -25,14 +27,25 @@ export class CardComponent extends HTMLElement {
   }
 
   populate = () => {
-    if(!this.data) return `<div class="row">`;
-    const { idx, row } = this.data;
+    if(!this.data) return `<div class="post">`;
+    const { idx, item } = this.data;
     return `
-        <div id="row_${idx}" class="row">
-            <div class="field">${row.source.name}</div>
-            <div class="field">${row.author}</div>
-            <div class="field">${row.title}</div>
-            <div class="field">${row.description}</div>
+        <div id="article${idx}" class="post">
+            <div class="header">
+              <div class="title">${item.title}</div>
+              <div class="author">${new Intl.DateTimeFormat('en-US', this.options).format(Date.parse(item.publishedAt))}</div>
+              <div class="author">${item.author ? "By " + item.author : ""}</div>
+              <div class="source">${item.source ? item.source.name : ""}</div>
+            </div>
+            <div class="content">
+              <div class="img-section">
+                <img class="image" src="${item.urlToImage}" />
+              </div>
+              <div class="article">
+                <div class="text">${item.description}</div>
+                <a href="${item.url}" class="text" target="_blank" >Go to article</a>
+              </div>
+            </div>
         </div>
   `;
   };

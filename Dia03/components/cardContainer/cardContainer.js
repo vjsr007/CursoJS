@@ -25,9 +25,9 @@ export class CardContainer extends HTMLElement {
   }
 
   populateRows = (data) => {
-    const rows = data.map((row,idx) => {
+    const rows = data.map((item,idx) => {
         const dataRow = document.createElement("card-component");
-        dataRow.setAttribute("data", JSON.stringify({row, idx}));
+        dataRow.setAttribute("data", JSON.stringify({item, idx}));
 
         return dataRow.outerHTML;
     })

@@ -1,15 +1,65 @@
-.row {
+.post {
     display: flex;
+    flex-direction: column;
+    height: 100%;
     width: 100%;
-    background-color: #ddddf7;
+    background-color: whitesmoke;
     color: black;
-    cursor: pointer;
+    padding-left: 15px;
+    padding-top: 15px;
   }
-  .row:hover {
-    background-color: #b4b4c2;
+
+  .post > * {
+    margin: 5px;
   }
-  .field {
+
+  .header {
+    width: 100%;
+    font-family: ProximaNovaCond, "Arial Narrow", sans-serif;
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.25rem;
+    margin: 0;
+    color: #3F3F42;
+    font-size: 2.75rem;
+    line-height: 3rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .img-section {
+    min-height: 282px;
+    min-width: 512px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image {
+    height: 282px;
+    width: 512px;
+
+    overflow: hidden;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    object-fit: cover;
+  }
+
+  .article {
+    width: 60%;  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .text {
     text-align: left;
     padding: 10px;
-    width: 33%;
+    width: 100%;
   }
