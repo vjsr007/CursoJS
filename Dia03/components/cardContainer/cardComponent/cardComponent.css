@@ -14,7 +14,7 @@
   }
 
   .header {
-    width: 100%;
+    width: 95%;
     font-family: ProximaNovaCond, "Arial Narrow", sans-serif;
   }
 
@@ -61,5 +61,5 @@
   .text {
     text-align: left;
     padding: 10px;
-    width: 100%;
+    width: 95%;
   }

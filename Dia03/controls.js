@@ -1,6 +1,7 @@
 newsUI = {
   ...newsUI,
   controls: (() => {
+    
     const frmFilters = {
       control: document.getElementById(this.name),
       name: "frmFilters",
