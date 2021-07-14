@@ -35,12 +35,6 @@ textarea {
   width: 100%;
 }
 
-body ::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 10px;
-  height: 100%;
-}
-
 .content {
   height: 100%;
   width: 100%;
@@ -59,10 +53,21 @@ body ::-webkit-scrollbar {
   background-color: #1a1a24;
   color: whitesmoke;
   margin: 0;
-  box-shadow: 0 3px 10px 0 rgb(255 255 255 / 20%), 0 3px 10px -2px rgb(255 255 255 / 50%),
-    0 1px 3px 0 rgb(255 255 255 / 12%);
+  box-shadow: 0 3px 10px 0 rgb(255 255 255 / 20%),
+    0 3px 10px -2px rgb(255 255 255 / 50%), 0 1px 3px 0 rgb(255 255 255 / 12%);
   border-right: 2px solid rgba(255, 255, 255, 0.2);
   z-index: 2;
+  overflow-y: scroll;
+}
+
+.filters::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.filters::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
 }
 
 #frmFilters > * {
@@ -93,7 +98,8 @@ body ::-webkit-scrollbar {
 }
 
 .filters > i:hover {
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1), 0 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1),
+    0 0 0 10px rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
 }

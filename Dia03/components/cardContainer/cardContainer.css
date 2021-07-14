@@ -1,27 +1,30 @@
 .component {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background-color: whitesmoke;
-    color: white;
-    padding: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  /* Track */
-:host::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  color: white;
+  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-/* Handle */
-:host::-webkit-scrollbar-thumb {
-  background: #888;
+.component::-webkit-scrollbar-track {
+  background: lightgray;
 }
 
-/* Handle on hover */
-:host::-webkit-scrollbar-thumb:hover {
+.component::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.component::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+}
+
+.component::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
