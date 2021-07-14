@@ -38,29 +38,32 @@ export class DropDown extends HTMLElement {
     if (hide) this.open = false;
 
     const options = shadow.getElementById("options");
-    options.style.display = this.open ? "inline" : "none";
+    if (options) options.style.display = this.open ? "inline" : "none";
 
     const toggleIcon = shadow.getElementById("toggleIcon");
-    toggleIcon.setAttribute(
-      "class",
-      this.open ? "fa fa-sort-asc" : "fa fa-sort-desc"
-    );
+    if (toggleIcon)
+      toggleIcon.setAttribute(
+        "class",
+        this.open ? "fa fa-sort-asc" : "fa fa-sort-desc"
+      );
 
     const btnToggle = shadow.getElementById("btnToggle");
-    btnToggle.setAttribute("class", this.open ? "button up" : "button down");
+    if (btnToggle)
+      btnToggle.setAttribute("class", this.open ? "button up" : "button down");
   };
 
   bindEvents = () => {
     const shadow = this.shadowRoot;
 
     const input = shadow.getElementById("input");
-    input.onclick = this.toggle;
+    if (input) input.onclick = this.toggle;
 
     const list = shadow.getElementById("component");
-    list.onblur = (ev) => this.toggle(ev, true);
+    if (list) list.onblur = (ev) => this.toggle(ev, true);
 
     const options = shadow.querySelectorAll("div.option");
-    options.forEach((option) => (option.onclick = this.changeOption));
+    if (options)
+      options.forEach((option) => (option.onclick = this.changeOption));
   };
 
   render = (shadow) => {
@@ -82,13 +85,27 @@ export class DropDown extends HTMLElement {
     }</div>${options.join("")}`;
   };
 
+  showLoader = () => {
+    const loader = document.createElement("custom-loader");
+    loader.setAttribute("default-loader", "spin");
+    return loader.outerHTML;
+  };
+
+  renderIcon = (data) => {
+    return data !== null
+      ? `
+        <i id="toggleIcon" class="fa fa-sort-desc" aria-hidden="true"></i>
+      `
+      : this.showLoader();
+  };
+
   populate = () => {
     const data = this.data;
     return `
           <div tabindex="0" id="component" class="component">
             <div id="input" class="input">${this.defaultText}</div>
             <div id="btnToggle" class="button down">
-              <i id="toggleIcon" class="fa fa-sort-desc" aria-hidden="true"></i>
+              ${this.renderIcon(data)}
             </div>
             <div id="options" class="options">
             ${this.getOptions(data)}

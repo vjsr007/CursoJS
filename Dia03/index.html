@@ -17,6 +17,10 @@
     />
     <script
       type="module"
+      src="./components/customLoader/customLoader.js"
+    ></script>
+    <script
+      type="module"
       src="./components/cardContainer/cardContainer.js"
     ></script>
     <script type="module" src="./components/dropDown/dropDown.js"></script>
@@ -46,7 +50,9 @@
         </div>
         <div id="frmFilters" class="form"></div>
       </div>
-      <div id="content" class="content"></div>
+      <div id="content" class="content">
+        <custom-loader />
+      </div>
     </div>
   </body>
   <script src="config.js"></script>

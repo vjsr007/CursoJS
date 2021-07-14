@@ -3,6 +3,7 @@ newsUI = {
   api: (() => {
     const get = (url, token) => {
       return new Promise((resolve, reject) => {
+        //return resolve({})
         if (!url) reject("url or path is needed");
         var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");

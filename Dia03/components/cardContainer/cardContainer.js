@@ -24,6 +24,10 @@ export class CardContainer extends HTMLElement {
     this.getStyles().forEach(style => shadow.appendChild(style));
   }
 
+  showLoader = () => {
+    return document.createElement("custom-loader").outerHTML
+  }
+
   populateRows = (data) => {
     const rows = data.map((item,idx) => {
         const dataRow = document.createElement("card-component");
@@ -38,11 +42,14 @@ export class CardContainer extends HTMLElement {
   populate = () => {
     return this.data !== null
       ? `
-            <div class="component">
-              ${this.populateRows(this.data)}
-            </div>
+        <div class="component">
+          ${this.populateRows(this.data)}
+        </div>
         `
-      : "<div>Empty component</div>";
+      : `
+        <div class="component">
+          <div class="loader">${this.showLoader()}</div>
+        </div>`;
   };
 
   attributeChangedCallback(name, oldVal, newVal) {

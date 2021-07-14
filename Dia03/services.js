@@ -18,6 +18,8 @@ newsUI = {
         lblLanguages,
         cmbSortBy,
         lblSortBy,
+        cardContainer,
+        content,
       },
     } = newsUI;
 
@@ -85,7 +87,7 @@ newsUI = {
 
       getNews(queryString).then((resolve) => {
         const news = resolve;
-        renderNews(news.articles);
+        renderNews(news.articles || null);
       });
     };
 
@@ -122,27 +124,21 @@ newsUI = {
       cmbSortBy.init;
       form.appendChild(cmbSortBy.get());
 
-      get(SOURCES_ENDPOINT).then(data => {
-        cmbSources.get().setAttribute("data", JSON.stringify(data.sources));        
-      });
-
       btnSearch.init;
       btnSearch.get().handleClick = getArticles;
 
       form.appendChild(btnSearch.get());
 
-      const dataTable = document.createElement("card-container");
-      dataTable.setAttribute("id", "dtArticles");
+      cardContainer.init;
 
-      const newsTable = document.getElementById("content");
-
-      newsTable.innerHTML = dataTable.outerHTML;
+      get(SOURCES_ENDPOINT).then(data => {
+        cmbSources.get().setAttribute("data", JSON.stringify(data.sources || null));        
+      });
     };
 
     const renderNews = (data) => {
-      const dataTable = document.getElementById("dtArticles");
-      dataTable.setAttribute("data", JSON.stringify(data));
-      return dataTable.outerHTML;
+      cardContainer.get().setAttribute("data", JSON.stringify(data));
+      content.get().innerHTML = cardContainer.get().outerHTML;
     };
 
     const getNews = (queryString = null) => {

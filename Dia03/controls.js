@@ -206,6 +206,29 @@ newsUI = {
         },
       };
 
+      const cardContainer = {
+        control: null,
+        name: "dtArticles",
+        get init() {
+          this.control = document.createElement("card-container");
+          this.control.setAttribute("id", this.name);    
+  
+          return this.control;
+        },
+        get() {
+          return this.control;
+        },
+      };
+
+      const content = {
+        control: document.getElementById(this.name),
+        name: "content",
+        get init() {},
+        get() {
+          return document.getElementById(this.name);    
+        },
+      };
+
     return {
       frmFilters,
       lblTopic,
@@ -219,6 +242,8 @@ newsUI = {
       lblLanguages,
       cmbSortBy,
       lblSortBy,
+      cardContainer,
+      content,
     };
   })(),
 };

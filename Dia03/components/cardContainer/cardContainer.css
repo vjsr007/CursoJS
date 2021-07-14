@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: #46464a;
+    background-color: whitesmoke;
     color: white;
     padding: 0;
     overflow-y: scroll;
@@ -23,4 +23,10 @@
 /* Handle on hover */
 :host::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  margin: auto;
 }

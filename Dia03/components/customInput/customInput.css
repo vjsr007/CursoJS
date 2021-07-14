@@ -1,7 +1,9 @@
 .customInput {
     position: relative;
-    background-color: #ffffff;
-    color: black;
+    background-color: black;
+    color: white;
+    border: 0;
+    border-bottom: 1px solid rgb(208, 210, 235);
     width: 100%;
     height: 30px;
     outline: 0;
