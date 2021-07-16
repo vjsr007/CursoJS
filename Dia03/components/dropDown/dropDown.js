@@ -3,13 +3,16 @@ export class DropDown extends HTMLElement {
   id = "id";
   open = false;
   defaultText = "[Select an option]";
-  currentOption = {
-    id: -1,
-    text: this.defaultText,
-  };
+  multiSelect = false;
+  currentOption = [
+    {
+      id: -1,
+      text: this.defaultText,
+    },
+  ];
 
   static get observedAttributes() {
-    return ["data", "id"];
+    return ["data", "id", "multiSelect"];
   }
 
   constructor() {
@@ -23,19 +26,21 @@ export class DropDown extends HTMLElement {
     const input = shadow.getElementById("input");
     input.textContent = ev.currentTarget.textContent;
 
-    this.currentOption = {
-      id: ev.currentTarget.id,
-      text: ev.currentTarget.textContent,
-    };
+    this.currentOption = [
+      {
+        id: ev.currentTarget.id,
+        text: ev.currentTarget.textContent,
+      },
+    ];
 
-    this.toggle();
+    this.toggle(false);
   };
 
-  toggle = (ev, hide = false) => {
+  toggle = (ev, open = null) => {
     const shadow = this.shadowRoot;
     this.open = !this.open;
 
-    if (hide) this.open = false;
+    if (open !== null) this.open = open;
 
     const options = shadow.getElementById("options");
     if (options) options.style.display = this.open ? "inline" : "none";
@@ -59,11 +64,27 @@ export class DropDown extends HTMLElement {
     if (input) input.onclick = this.toggle;
 
     const list = shadow.getElementById("component");
-    if (list) list.onblur = (ev) => this.toggle(ev, true);
+    if (list)
+      list.onblur = (ev) => {
+        ev.preventDefault();
+        this.toggle(ev, false);
+      };
 
     const options = shadow.querySelectorAll("div.option");
     if (options)
-      options.forEach((option) => (option.onclick = this.changeOption));
+      options.forEach((option) => {
+        const checkbox = option.querySelector("input[type=checkbox]");
+        if (checkbox) {
+          checkbox.onmousedown = (ev) => {
+            ev.preventDefault();
+          };
+          checkbox.onchange = (ev) => {
+            ev.preventDefault();
+          };
+        }
+
+        if (!this.multiSelect) option.onclick = this.changeOption;
+      });
   };
 
   render = (shadow) => {
@@ -79,7 +100,16 @@ export class DropDown extends HTMLElement {
     if (!data) return "";
     const options = data.map((option, idx) => {
       return `
-        <div title="${option.name}" id="${option.id}" class="option">${option.name}</div>
+        <div title="${option.name}" id="${option.id}" class="option">
+          ${
+            this.multiSelect
+              ? `
+            <input class="checkbox" type="checkbox" id="chk_${option.id}" name="chk_${option.id}" />
+          `
+              : ""
+          }
+          <label class="name" >${option.name}</label>
+        </div>
         `;
     });
 
@@ -140,6 +170,9 @@ export class DropDown extends HTMLElement {
           break;
         case "id":
           this.id = newVal;
+          break;
+        case "multiSelect":
+          this.multiSelect = newVal === "true";
           break;
         default:
       }

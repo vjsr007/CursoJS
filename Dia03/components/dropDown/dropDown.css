@@ -23,7 +23,7 @@
 
   .options {
     background-color: black;
-    width: 99%;
+    width: 100%;
     min-height: 50px;
     height: fit-content;
     max-height: 250px;
@@ -35,7 +35,28 @@
     z-index: 6;
   }
 
+  .options::-webkit-scrollbar-track {
+    background: lightgray;
+  }
+  
+  .options::-webkit-scrollbar {
+    width: 0.7em;
+    height: 0.7em;
+  }
+  
+  .options::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .options::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   .option {
+    display: flex;
+    width: 99%;
     background-color: black;
     cursor: pointer;
     height: 25px;
@@ -72,4 +93,13 @@
     height: 16px;
     width: 16px;
     font-size: 16px;
+  }
+
+  .checkbox {
+    margin: auto 5px;
+    font-size: 16px;
+  }
+
+  .name {
+    margin: auto 5px;
   }

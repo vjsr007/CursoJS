@@ -46,20 +46,20 @@ newsUI = {
         q: txtTopic.get().searchText !== "" ? txtTopic.get().searchText : "*",
         qInTitle: null,
         sources:
-          cmbSources.get().currentOption.id != -1
-            ? cmbSources.get().currentOption.id
+          cmbSources.get().currentOption[0].id != -1
+            ? cmbSources.get().currentOption[0].id
             : null,
         domains: null,
         excludeDomains: null,
         from: null,
         to: null,
         language:
-          cmbLanguages.get().currentOption.id != -1
-            ? cmbLanguages.get().currentOption.id
+          cmbLanguages.get().currentOption[0].id != -1
+            ? cmbLanguages.get().currentOption[0].id
             : null,
         sortBy:
-          cmbSortBy.get().currentOption.id != -1
-            ? cmbSortBy.get().currentOption.id
+          cmbSortBy.get().currentOption[0].id != -1
+            ? cmbSortBy.get().currentOption[0].id
             : null,
         pageSize: 100,
         page: 1,
