@@ -1,7 +1,7 @@
 export class CardComponent extends HTMLElement {
   data = null;
 
-  options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
   static get observedAttributes() {
     return ["data"];
@@ -16,25 +16,36 @@ export class CardComponent extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/cardContainer/cardComponent/cardComponent.css");
+    link.setAttribute(
+      "href",
+      "./components/cardContainer/cardComponent/cardComponent.css"
+    );
 
     return [link];
   };
 
   render = (shadow) => {
-    shadow.innerHTML = this.populate();
-    this.getStyles().forEach(style => shadow.appendChild(style));
-  }
+    shadow.innerHTML = "";
+    this.getStyles().forEach((style) => shadow.appendChild(style));
+    const component = document.createElement("div");
+    component.innerHTML = this.populate();
+    shadow.appendChild(component);
+  };
 
   populate = () => {
-    if(!this.data) return `<div class="post">`;
+    if (!this.data) return `<div class="post">`;
     const { idx, item } = this.data;
     return `
         <div id="article${idx}" class="post">
             <div class="header">
               <div class="title">${item.title}</div>
-              <div class="author">${new Intl.DateTimeFormat('en-US', this.options).format(Date.parse(item.publishedAt))}</div>
-              <div class="author">${item.author ? "By " + item.author : ""}</div>
+              <div class="author">${new Intl.DateTimeFormat(
+                "en-US",
+                this.options
+              ).format(Date.parse(item.publishedAt))}</div>
+              <div class="author">${
+                item.author ? "By " + item.author : ""
+              }</div>
               <div class="source">${item.source ? item.source.name : ""}</div>
             </div>
             <div class="content">
@@ -43,7 +54,9 @@ export class CardComponent extends HTMLElement {
               </div>
               <div class="article">
                 <div class="text">${item.description}</div>
-                <a href="${item.url}" class="text" target="_blank" >Go to article</a>
+                <a href="${
+                  item.url
+                }" class="text" target="_blank" >Go to article</a>
               </div>
             </div>
         </div>
@@ -59,7 +72,7 @@ export class CardComponent extends HTMLElement {
         default:
           this.data = newVal;
       }
-      const shadow = this.shadowRoot
+      const shadow = this.shadowRoot;
       this.render(shadow);
     }
   }

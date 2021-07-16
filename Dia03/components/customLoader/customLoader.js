@@ -12,8 +12,11 @@ export class CustomLoader extends HTMLElement {
   }
 
   render = (shadow) => {
-    shadow.innerHTML = this.populate();
+    shadow.innerHTML = "";
     this.getStyles().forEach((style) => shadow.appendChild(style));
+    const component = document.createElement("div");
+    component.innerHTML = this.populate();
+    shadow.appendChild(component);
   };
 
   spin = () => `

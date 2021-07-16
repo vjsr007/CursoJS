@@ -67,9 +67,12 @@ export class DropDown extends HTMLElement {
   };
 
   render = (shadow) => {
-    shadow.innerHTML = this.populate();
+    shadow.innerHTML = "";
     this.getStyles().forEach((style) => shadow.appendChild(style));
-    this.bindEvents();
+    const component = document.createElement("div");
+    component.innerHTML = this.populate();
+    shadow.appendChild(component);
+    this.bindEvents(shadow);
   };
 
   getOptions = (data) => {

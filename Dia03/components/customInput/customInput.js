@@ -22,10 +22,13 @@ export class CustomInput extends HTMLElement {
     }
   
     render = (shadow) => {
-      shadow.innerHTML = this.populate();
-      this.getStyles().forEach(style => shadow.appendChild(style));
-      this.bindEvents();
-    }
+      shadow.innerHTML = "";
+      this.getStyles().forEach((style) => shadow.appendChild(style));
+      const component = document.createElement("div");
+      component.innerHTML = this.populate();
+      shadow.appendChild(component);
+      this.bindEvents(shadow);
+    };
   
     populate = () => {
       const data = this.data;

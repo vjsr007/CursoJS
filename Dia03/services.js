@@ -71,10 +71,10 @@ newsUI = {
         let from = formatDate(to);
         switch (cmbDates.get().currentOption.id) {
           case "week":
-            from = formatDate(addDays(today, -7).toISOString())
+            from = formatDate(addDays(today, -7).toISOString());
             break;
           case "month":
-            from = formatDate(addDays(today, -30).toISOString())
+            from = formatDate(addDays(today, -30).toISOString());
             break;
         }
         articleRequest = { ...articleRequest, from, to };
@@ -131,8 +131,10 @@ newsUI = {
 
       cardContainer.init;
 
-      get(SOURCES_ENDPOINT).then(data => {
-        cmbSources.get().setAttribute("data", JSON.stringify(data.sources || null));        
+      get(SOURCES_ENDPOINT).then((data) => {
+        cmbSources
+          .get()
+          .setAttribute("data", JSON.stringify(data.sources || null));
       });
     };
 
@@ -144,7 +146,7 @@ newsUI = {
     const getNews = (queryString = null) => {
       const url = NEWS_ENDPOINT.replace(
         "{{QUERY_SEARCH}}",
-        queryString ? queryString : "q=*&pageSize=100"
+        queryString ? queryString : "q=*&pageSize=10"
       );
       return get(url);
     };

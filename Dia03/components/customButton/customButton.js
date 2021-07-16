@@ -1,7 +1,7 @@
 export class CustomButton extends HTMLElement {
   data = {};
 
-  handleClick = () => {}
+  handleClick = () => {};
 
   static get observedAttributes() {
     return ["data"];
@@ -15,24 +15,27 @@ export class CustomButton extends HTMLElement {
 
   bindEvents = () => {
     const shadow = this.shadowRoot;
-    
+
     const input = shadow.getElementById("customButton");
-    input.onclick = () => this.handleClick()
-  }
+    input.onclick = () => this.handleClick();
+  };
 
   render = (shadow) => {
-    shadow.innerHTML = this.populate();
-    this.getStyles().forEach(style => shadow.appendChild(style));
-    this.bindEvents();
-  }
+    shadow.innerHTML = "";
+    this.getStyles().forEach((style) => shadow.appendChild(style));
+    const component = document.createElement("div");
+    component.innerHTML = this.populate();
+    shadow.appendChild(component);
+    this.bindEvents(shadow);
+  };
 
   populate = () => {
     const data = this.data;
-    return (`
+    return `
       <button type="button" class="customButton" id="customButton">
         <label>Search</label>
       </button>
-    `);
+    `;
   };
 
   getStyles = () => {
@@ -51,7 +54,7 @@ export class CustomButton extends HTMLElement {
           break;
         default:
       }
-      const shadow = this.shadowRoot
+      const shadow = this.shadowRoot;
       this.render(shadow);
     }
   }

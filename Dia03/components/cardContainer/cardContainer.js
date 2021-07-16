@@ -20,23 +20,26 @@ export class CardContainer extends HTMLElement {
   };
 
   render = (shadow) => {
-    shadow.innerHTML = this.populate();
-    this.getStyles().forEach(style => shadow.appendChild(style));
-  }
+    shadow.innerHTML = "";
+    this.getStyles().forEach((style) => shadow.appendChild(style));
+    const component = document.createElement("div");
+    component.innerHTML = this.populate();
+    shadow.appendChild(component);
+  };
 
   showLoader = () => {
-    return document.createElement("custom-loader").outerHTML
-  }
+    return document.createElement("custom-loader").outerHTML;
+  };
 
   populateRows = (data) => {
-    const rows = data.map((item,idx) => {
-        const dataRow = document.createElement("card-component");
-        dataRow.setAttribute("data", JSON.stringify({item, idx}));
+    const rows = data.map((item, idx) => {
+      const dataRow = document.createElement("card-component");
+      dataRow.setAttribute("data", JSON.stringify({ item, idx }));
 
-        return dataRow.outerHTML;
-    })
+      return dataRow.outerHTML;
+    });
 
-    return rows.join("")
+    return rows.join("");
   };
 
   populate = () => {
@@ -61,7 +64,7 @@ export class CardContainer extends HTMLElement {
         default:
           this.data = newVal;
       }
-      const shadow = this.shadowRoot
+      const shadow = this.shadowRoot;
       this.render(shadow);
     }
   }
