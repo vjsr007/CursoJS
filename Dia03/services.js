@@ -58,25 +58,22 @@ newsUI = {
         from: null,
         to: null,
         language:
-          cmbLanguages.get().currentOption.length > 0
-            ? cmbLanguages
-                .get()
-                .currentOption.map((item) => item.id)
-                .join(",")
+          cmbLanguages.get().currentOption[0].id != -1
+            ? cmbLanguages.get().currentOption[0].id
             : null,
         sortBy:
           cmbSortBy.get().currentOption[0].id != -1
             ? cmbSortBy.get().currentOption[0].id
             : null,
-        pageSize: 100,
-        page: 1,
+        pageSize: pager.get().pageSize,
+        page: pager.get().page,
       };
 
-      if (cmbDates.get().currentOption.id != -1) {
+      if (cmbDates.get().currentOption[0].id != -1) {
         const today = new Date();
         const to = today.toISOString();
         let from = formatDate(to);
-        switch (cmbDates.get().currentOption.id) {
+        switch (cmbDates.get().currentOption[0].id) {
           case "week":
             from = formatDate(addDays(today, -7).toISOString());
             break;
@@ -94,7 +91,7 @@ newsUI = {
 
       getNews(queryString).then((resolve) => {
         const news = resolve;
-        renderNews(news.articles || null);
+        renderNews(news || null);
       });
     };
 
@@ -132,6 +129,7 @@ newsUI = {
       form.appendChild(cmbSortBy.get());
 
       pager.init;
+      pager.get().triggerEvent = getArticles;
       form.appendChild(pager.get());
 
       btnSearch.init;
@@ -149,7 +147,10 @@ newsUI = {
     };
 
     const renderNews = (data) => {
-      cardContainer.get().setAttribute("data", JSON.stringify(data));
+      cardContainer
+        .get()
+        .setAttribute("data", data ? JSON.stringify(data.articles) : null);
+      pager.get().setAttribute("numberofitems", data ? data.totalResults : 0);
       content.get().innerHTML = cardContainer.get().outerHTML;
     };
 

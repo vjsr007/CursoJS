@@ -2,10 +2,39 @@ export class PagerComponent extends HTMLElement {
   page = 1;
   pageSize = 20;
   numberOfItems = 0;
-  goToFirst = () => {};
-  goToPrevious = () => {};
-  goToNext = () => {};
-  goToLast = () => {};
+  goTo = (where) => {
+    const shadow = this.shadowRoot;
+    switch (where) {
+      case "first":
+        this.goToFirst();
+        break;
+      case "previous":
+        this.goToPrevious();
+        break;
+      case "next":
+        this.goToNext();
+        break;
+      case "last":
+        this.goToLast();
+        break;
+    }
+    const pageControl = shadow.getElementById("page");
+    pageControl.textContent = this.page;
+    this.triggerEvent();
+  };
+  goToFirst = () => {
+    this.page = 1;
+  };
+  goToPrevious = () => {
+    this.page = this.page > 1 ? this.page - 1 : this.page;
+  };
+  goToNext = () => {
+    this.page = this.page < this.calculatePages() ? this.page + 1 : this.page;
+  };
+  goToLast = () => {
+    this.page = this.calculatePages();
+  };
+  triggerEvent = () => {};
 
   static get observedAttributes() {
     return ["page", "pagesize", "numberofitems"];
@@ -17,7 +46,13 @@ export class PagerComponent extends HTMLElement {
     this.render(shadow);
   }
 
-  bindEvents = () => {    
+  calculatePages = () => {
+    return this.numberOfItems > 0
+      ? Math.ceil(this.numberOfItems / this.pageSize)
+      : 1;
+  };
+
+  bindEvents = () => {
     const shadow = this.shadowRoot;
 
     const btnFirst = shadow.getElementById("btnFirst");
@@ -25,10 +60,10 @@ export class PagerComponent extends HTMLElement {
     const btnNext = shadow.getElementById("btnNext");
     const btnLast = shadow.getElementById("btnLast");
 
-    btnFirst.addEventListener("onclick", this.goToFirst);
-    btnPrevious.addEventListener("onclick", this.goToPrevious);
-    btnNext.addEventListener("onclick", this.goToNext);
-    btnLast.addEventListener("onclick", this.goToLast);
+    btnFirst.onclick = () => this.goTo("first");
+    btnPrevious.onclick = () => this.goTo("previous");
+    btnNext.onclick = () => this.goTo("next");
+    btnLast.onclick = () => this.goTo("last");
   };
 
   render = (shadow) => {
@@ -40,11 +75,11 @@ export class PagerComponent extends HTMLElement {
   populate = () => {
     return `
           <div class="component">
-            <div id="btnFirst" title="first" class="button" ><</div>
-            <div id="btnPrevious" title="previous" class="button" ><<</div>
-            <div title="current page" class="button input" >${this.page}</div>
-            <div id="btnNext" title="next" class="button" >>></div>
-            <div id="btnLast" title="last" class="button" >></div>
+            <div id="btnFirst" title="first" class="button" ><<</div>
+            <div id="btnPrevious" title="previous" class="button" ><</div>
+            <div id="page" title="current page" class="button input" >${this.page}</div>
+            <div id="btnNext" title="next" class="button" >></div>
+            <div id="btnLast" title="last" class="button" >>></div>
           </div>
       `;
   };

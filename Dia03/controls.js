@@ -128,8 +128,6 @@ newsUI = {
         this.control = document.createElement("drop-down");
         this.control.setAttribute("id", this.name);
 
-        this.control.setAttribute("multiselect", true);
-
         const dates = [
           { id: "ar", name: "ar" },
           { id: "de", name: "de" },

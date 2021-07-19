@@ -8,7 +8,7 @@ newsUI = {
     const requestNews = () => {
       getNews().then((resolve) => {
         const news = resolve;
-        renderNews(news.articles || null);
+        renderNews(news || null);
       });
     }
 
