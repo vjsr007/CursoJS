@@ -14,12 +14,15 @@
   }
 
   .input {
-    width: 100%;
+    width: 90%;
     height: 24px;
     outline: 0;
     padding: 3px;
     cursor: pointer;
-  }
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
   .options {
     background-color: black;
@@ -101,5 +104,7 @@
   }
 
   .name {
+    width: 100%;
     margin: auto 5px;
+    cursor: pointer;
   }

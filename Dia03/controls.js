@@ -31,6 +31,7 @@ newsUI = {
       get init() {
         this.control = document.createElement("drop-down");
         this.control.setAttribute("id", this.name);
+        this.control.setAttribute("multiselect", true);
 
         return this.control;
       },
@@ -126,6 +127,8 @@ newsUI = {
       get init() {
         this.control = document.createElement("drop-down");
         this.control.setAttribute("id", this.name);
+
+        this.control.setAttribute("multiselect", true);
 
         const dates = [
           { id: "ar", name: "ar" },
@@ -229,6 +232,20 @@ newsUI = {
         },
       };
 
+      const pager = {
+        control: null,
+        name: "pager",
+        get init() {
+          this.control = document.createElement("pager-component");
+          this.control.setAttribute("id", this.name);
+  
+          return this.control;
+        },
+        get() {
+          return this.control;
+        },
+      };
+
     return {
       frmFilters,
       lblTopic,
@@ -244,6 +261,7 @@ newsUI = {
       lblSortBy,
       cardContainer,
       content,
+      pager,
     };
   })(),
 };

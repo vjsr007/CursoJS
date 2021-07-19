@@ -20,6 +20,7 @@ newsUI = {
         lblSortBy,
         cardContainer,
         content,
+        pager,
       },
     } = newsUI;
 
@@ -46,16 +47,22 @@ newsUI = {
         q: txtTopic.get().searchText !== "" ? txtTopic.get().searchText : "*",
         qInTitle: null,
         sources:
-          cmbSources.get().currentOption[0].id != -1
-            ? cmbSources.get().currentOption[0].id
+          cmbSources.get().currentOption.length > 0
+            ? cmbSources
+                .get()
+                .currentOption.map((item) => item.id)
+                .join(",")
             : null,
         domains: null,
         excludeDomains: null,
         from: null,
         to: null,
         language:
-          cmbLanguages.get().currentOption[0].id != -1
-            ? cmbLanguages.get().currentOption[0].id
+          cmbLanguages.get().currentOption.length > 0
+            ? cmbLanguages
+                .get()
+                .currentOption.map((item) => item.id)
+                .join(",")
             : null,
         sortBy:
           cmbSortBy.get().currentOption[0].id != -1
@@ -123,6 +130,9 @@ newsUI = {
 
       cmbSortBy.init;
       form.appendChild(cmbSortBy.get());
+
+      pager.init;
+      form.appendChild(pager.get());
 
       btnSearch.init;
       btnSearch.get().handleClick = getArticles;
