@@ -40,7 +40,7 @@ export class CustomInput extends HTMLElement {
     getStyles = () => {
       const link = document.createElement("link");
       link.setAttribute("rel", "stylesheet");
-      link.setAttribute("href", "./components/customInput/customInput.css");
+      link.setAttribute("href", "./src/components/customInput/customInput.css");
   
       return [link];
     };

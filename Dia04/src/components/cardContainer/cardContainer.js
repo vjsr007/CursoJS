@@ -1,3 +1,6 @@
+import { CardComponent } from "./cardComponent/cardComponent";
+import { CustomLoader } from "../customLoader/customLoader";
+
 export class CardContainer extends HTMLElement {
   data = null;
 
@@ -14,7 +17,7 @@ export class CardContainer extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/cardContainer/cardContainer.css");
+    link.setAttribute("href", "./src/components/cardContainer/cardContainer.css");
 
     return [link];
   };
@@ -28,12 +31,12 @@ export class CardContainer extends HTMLElement {
   };
 
   showLoader = () => {
-    return document.createElement("custom-loader").outerHTML;
+    return (new CustomLoader()).outerHTML;
   };
 
   populateRows = (data) => {
     const rows = data.map((item, idx) => {
-      const dataRow = document.createElement("card-component");
+      const dataRow = new CardComponent();
       dataRow.setAttribute("data", JSON.stringify({ item, idx }));
 
       return dataRow.outerHTML;

@@ -18,7 +18,7 @@ export class CardComponent extends HTMLElement {
     link.setAttribute("rel", "stylesheet");
     link.setAttribute(
       "href",
-      "./components/cardContainer/cardComponent/cardComponent.css"
+      "./src/components/cardContainer/cardComponent/cardComponent.css"
     );
 
     return [link];

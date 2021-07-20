@@ -87,7 +87,7 @@ export class PagerComponent extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/pagerComponent/pagerComponent.css");
+    link.setAttribute("href", "./src/components/pagerComponent/pagerComponent.css");
 
     return [link];
   };

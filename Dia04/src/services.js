@@ -136,7 +136,7 @@ export const initComponents = () => {
   cardContainer.init;
 
   get(SOURCES_ENDPOINT).then((data) => {
-    cmbSources.get().setAttribute("data", JSON.stringify(data.sources || null));
+    cmbSources.get().setAttribute("data", JSON.stringify(data.sources || []));
   });
 };
 

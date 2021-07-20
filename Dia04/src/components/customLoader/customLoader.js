@@ -62,7 +62,7 @@ export class CustomLoader extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/customLoader/customLoader.css");
+    link.setAttribute("href", "./src/components/customLoader/customLoader.css");
 
     return [link];
   };

@@ -1,9 +1,9 @@
-import { getNews, renderNews, initComponents } from "./business/services";
+import { getNews, renderNews, initComponents } from "./services";
 
 const requestNews = () => {
   getNews().then((resolve) => {
     const news = resolve;
-    renderNews(news || null);
+    renderNews(news || []);
   });
 };
 

@@ -1,3 +1,5 @@
+import { CustomLoader } from "../customLoader/customLoader";
+
 export class DropDown extends HTMLElement {
   data = null;
   id = "id";
@@ -76,7 +78,7 @@ export class DropDown extends HTMLElement {
         }
       }
     });
-    const text = this.currentOption.map((item) => item.text).join(", ")
+    const text = this.currentOption.map((item) => item.text).join(", ");
     input.textContent = text;
     input.title = text;
   };
@@ -151,7 +153,7 @@ export class DropDown extends HTMLElement {
   };
 
   showLoader = () => {
-    const loader = document.createElement("custom-loader");
+    const loader = new CustomLoader();
     loader.setAttribute("default-loader", "spin");
     return loader.outerHTML;
   };
@@ -182,7 +184,7 @@ export class DropDown extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/dropDown/dropDown.css");
+    link.setAttribute("href", "./src/components/dropDown/dropDown.css");
 
     const fontAwesome = document.createElement("link");
     fontAwesome.setAttribute("rel", "stylesheet");
@@ -205,8 +207,10 @@ export class DropDown extends HTMLElement {
           break;
         case "multiselect":
           this.multiSelect = newVal === "true";
-          this.defaultText = this.multiSelect ? "[Select options]" : "[Select an option]";
-          if(this.multiSelect) this.currentOption = [];
+          this.defaultText = this.multiSelect
+            ? "[Select options]"
+            : "[Select an option]";
+          if (this.multiSelect) this.currentOption = [];
           break;
         default:
       }

@@ -1,6 +1,8 @@
+import { CustomLoader } from "./components/customLoader/customLoader";
+
 export const get = (url, token) => {
   const content = document.getElementById("content");
-  content.innerHTML =  document.createElement("custom-loader").outerHTML;
+  content.innerHTML =  (new CustomLoader()).outerHTML;
 
   return new Promise((resolve, reject) => {
     //return resolve({})

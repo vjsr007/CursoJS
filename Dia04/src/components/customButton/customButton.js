@@ -41,7 +41,7 @@ export class CustomButton extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/customButton/customButton.css");
+    link.setAttribute("href", "./src/components/customButton/customButton.css");
 
     return [link];
   };

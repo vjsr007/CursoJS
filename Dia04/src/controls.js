@@ -1,4 +1,10 @@
-const frmFiltersName = "frmFilters"
+import { DropDown } from "./components/dropDown/dropDown";
+import { CardContainer } from "./components/cardContainer/cardContainer";
+import { CustomButton } from "./components/customButton/customButton";
+import { CustomInput } from "./components/customInput/customInput";
+import { PagerComponent } from "./components/pagerComponent/pagerComponent";
+
+const frmFiltersName = "frmFilters";
 
 export const frmFilters = {
   name: "frmFilters",
@@ -13,7 +19,7 @@ export const txtTopic = {
   control: null,
   name: "txtTopic",
   get init() {
-    this.control = document.createElement("custom-input");
+    this.control = new CustomInput();
     this.control.setAttribute("id", this.name);
 
     return this.control;
@@ -27,7 +33,7 @@ export const cmbSources = {
   control: null,
   name: "cmbSources",
   get init() {
-    this.control = document.createElement("drop-down");
+    this.control = new DropDown();
     this.control.setAttribute("id", this.name);
     this.control.setAttribute("multiselect", true);
 
@@ -72,7 +78,7 @@ export const btnSearch = {
   control: null,
   name: "btnSearch",
   get init() {
-    this.control = document.createElement("custom-button");
+    this.control = new CustomButton();
     this.control.setAttribute("id", this.name);
 
     return this.control;
@@ -86,7 +92,7 @@ export const cmbDates = {
   control: null,
   name: "cmbDates",
   get init() {
-    this.control = document.createElement("drop-down");
+    this.control = new DropDown();
     this.control.setAttribute("id", this.name);
 
     const dates = [
@@ -123,7 +129,7 @@ export const cmbLanguages = {
   control: null,
   name: "cmbLanguages",
   get init() {
-    this.control = document.createElement("drop-down");
+    this.control = new DropDown();
     this.control.setAttribute("id", this.name);
 
     const lans = [
@@ -169,75 +175,75 @@ export const lblLanguages = {
 };
 
 export const cmbSortBy = {
-    control: null,
-    name: "cmbSortBy",
-    get init() {
-      this.control = document.createElement("drop-down");
-      this.control.setAttribute("id", this.name);
+  control: null,
+  name: "cmbSortBy",
+  get init() {
+    this.control = new DropDown();
+    this.control.setAttribute("id", this.name);
 
-      const sort = [
-        { id: "relevancy", name: "Relevancy" },
-        { id: "popularity", name: "Popularity" },
-        { id: "publishedAt", name: "PublishedAt" },
-      ];
+    const sort = [
+      { id: "relevancy", name: "Relevancy" },
+      { id: "popularity", name: "Popularity" },
+      { id: "publishedAt", name: "PublishedAt" },
+    ];
 
-      this.control.setAttribute("data", JSON.stringify(sort));
+    this.control.setAttribute("data", JSON.stringify(sort));
 
-      return this.control;
-    },
-    get() {
-      return this.control;
-    },
-  };
+    return this.control;
+  },
+  get() {
+    return this.control;
+  },
+};
 
-  export const lblSortBy = {
-    control: null,
-    name: "lblSortBy",
-    get init() {
-      this.control = document.createElement("label");
-      this.control.setAttribute("id", this.name);
-      this.control.innerHTML = "Sort by";
+export const lblSortBy = {
+  control: null,
+  name: "lblSortBy",
+  get init() {
+    this.control = document.createElement("label");
+    this.control.setAttribute("id", this.name);
+    this.control.innerHTML = "Sort by";
 
-      return this.control;
-    },
-    get() {
-      return this.control;
-    },
-  };
+    return this.control;
+  },
+  get() {
+    return this.control;
+  },
+};
 
-  export const cardContainer = {
-    control: null,
-    name: "dtArticles",
-    get init() {
-      this.control = document.createElement("card-container");
-      this.control.setAttribute("id", this.name);    
+export const cardContainer = {
+  control: null,
+  name: "dtArticles",
+  get init() {
+    this.control = new CardContainer();
+    this.control.setAttribute("id", this.name);
 
-      return this.control;
-    },
-    get() {
-      return this.control;
-    },
-  };
+    return this.control;
+  },
+  get() {
+    return this.control;
+  },
+};
 
-  export const content = {
-    control: () => document.getElementById(this.name),
-    name: "content",
-    get init() {},
-    get() {
-      return document.getElementById(this.name);    
-    },
-  };
+export const content = {
+  control: () => document.getElementById(this.name),
+  name: "content",
+  get init() {},
+  get() {
+    return document.getElementById(this.name);
+  },
+};
 
-  export const pager = {
-    control: null,
-    name: "pager",
-    get init() {
-      this.control = document.createElement("pager-component");
-      this.control.setAttribute("id", this.name);
+export const pager = {
+  control: null,
+  name: "pager",
+  get init() {
+    this.control = new PagerComponent();
+    this.control.setAttribute("id", this.name);
 
-      return this.control;
-    },
-    get() {
-      return this.control;
-    },
-  };
+    return this.control;
+  },
+  get() {
+    return this.control;
+  },
+};

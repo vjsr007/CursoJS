@@ -31,7 +31,7 @@ export class DrafComponent extends HTMLElement {
   getStyles = () => {
     const link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./components/drafComponent/drafComponent.css");
+    link.setAttribute("href", "./src/components/drafComponent/drafComponent.css");
 
     return [link];
   };
