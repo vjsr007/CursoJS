@@ -183,16 +183,13 @@ export class DropDown extends HTMLElement {
 
   getStyles = () => {
     const link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./src/components/dropDown/dropDown.css");
+    link.rel = "stylesheet";
+    link.href = "./src/components/dropDown/dropDown.css";
 
     const fontAwesome = document.createElement("link");
-    fontAwesome.setAttribute("rel", "stylesheet");
-    fontAwesome.setAttribute(
-      "href",
-      "./lib/fontawesome/css/font-awesome.min.css"
-    );
-
+    fontAwesome.rel = "stylesheet";
+    fontAwesome.href = "./lib/fontawesome/css/font-awesome.min.css";
+    
     return [link, fontAwesome];
   };
 
