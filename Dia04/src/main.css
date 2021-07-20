@@ -118,3 +118,9 @@ pager-component {
   height: 100%;
   margin-top: 20px !important;
 }
+
+custom-loader {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+}
