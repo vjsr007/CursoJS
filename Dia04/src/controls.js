@@ -4,8 +4,6 @@ import { CustomButton } from "./components/customButton/customButton";
 import { CustomInput } from "./components/customInput/customInput";
 import { PagerComponent } from "./components/pagerComponent/pagerComponent";
 
-const frmFiltersName = "frmFilters";
-
 export const frmFilters = {
   name: "frmFilters",
   control: () => document.getElementById(this.name),
