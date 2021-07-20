@@ -1,5 +1,6 @@
 import { CardComponent } from "./cardComponent/cardComponent";
 import { CustomLoader } from "../customLoader/customLoader";
+import styles from "./cardContainer.css";
 
 export class CardContainer extends HTMLElement {
   data = null;
@@ -15,11 +16,14 @@ export class CardContainer extends HTMLElement {
   }
 
   getStyles = () => {
-    const link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./src/components/cardContainer/cardContainer.css");
+    const link = document.createElement("style");
+    link.innerHTML = styles;
 
-    return [link];
+    const fontAwesome = document.createElement("link");
+    fontAwesome.rel = "stylesheet";
+    fontAwesome.href = "./lib/fontawesome/css/font-awesome.min.css";
+
+    return [link, fontAwesome];
   };
 
   render = (shadow) => {

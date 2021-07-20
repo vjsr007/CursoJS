@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ["raw-loader"],
       },
     ],
   },
@@ -33,10 +33,9 @@ module.exports = {
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new CopyPlugin({
       patterns: [
-        { from: "src/components/**/*.css", to: "" },
         { from: "src/main.css", to: "" },
         { from: "src/lib", to: "lib" },
-      ]
+      ],
     }),
   ],
 };

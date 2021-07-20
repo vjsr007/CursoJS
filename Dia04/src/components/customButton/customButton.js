@@ -1,3 +1,5 @@
+import styles from "./customButton.css";
+
 export class CustomButton extends HTMLElement {
   data = {};
 
@@ -39,11 +41,14 @@ export class CustomButton extends HTMLElement {
   };
 
   getStyles = () => {
-    const link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "./src/components/customButton/customButton.css");
+    const link = document.createElement("style");
+    link.innerHTML = styles;
 
-    return [link];
+    const fontAwesome = document.createElement("link");
+    fontAwesome.rel = "stylesheet";
+    fontAwesome.href = "./lib/fontawesome/css/font-awesome.min.css";
+
+    return [link, fontAwesome];
   };
 
   attributeChangedCallback(name, oldVal, newVal) {

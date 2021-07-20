@@ -1,4 +1,5 @@
 import { CustomLoader } from "../customLoader/customLoader";
+import styles from "./dropDown.css";
 
 export class DropDown extends HTMLElement {
   data = null;
@@ -182,14 +183,13 @@ export class DropDown extends HTMLElement {
   };
 
   getStyles = () => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "./src/components/dropDown/dropDown.css";
+    const link = document.createElement("style");
+    link.innerHTML = styles;
 
     const fontAwesome = document.createElement("link");
     fontAwesome.rel = "stylesheet";
     fontAwesome.href = "./lib/fontawesome/css/font-awesome.min.css";
-    
+
     return [link, fontAwesome];
   };
 

@@ -1,3 +1,5 @@
+import styles from "./cardComponent.css";
+
 export class CardComponent extends HTMLElement {
   data = null;
 
@@ -14,16 +16,15 @@ export class CardComponent extends HTMLElement {
   }
 
   getStyles = () => {
-    const link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute(
-      "href",
-      "./src/components/cardContainer/cardComponent/cardComponent.css"
-    );
+    const link = document.createElement("style");
+    link.innerHTML = styles;
 
-    return [link];
+    const fontAwesome = document.createElement("link");
+    fontAwesome.rel = "stylesheet";
+    fontAwesome.href = "./lib/fontawesome/css/font-awesome.min.css";
+
+    return [link, fontAwesome];
   };
-
   render = (shadow) => {
     shadow.innerHTML = "";
     this.getStyles().forEach((style) => shadow.appendChild(style));
