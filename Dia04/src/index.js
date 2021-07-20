@@ -8,7 +8,6 @@ const requestNews = () => {
 };
 
 const initApp = () => {
-  console.log("initApp")
   initComponents();
   requestNews();
 };
