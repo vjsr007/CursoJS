@@ -6,6 +6,6 @@ const App = ({ name, lastName }) => (
     Hello
     {name} {lastName}
   </h1>
-);
+)
 
 ReactDOM.render(<App name="Victor" lastName="Sanchez" />, document.getElementById('app'))

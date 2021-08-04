@@ -16,9 +16,15 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
-      "eslint --fix",
-      "git add"
+    "./src/**/*.{js,jsx}": [
+      "prettier --write",
+      "eslint"
+    ],
+    "./src/**/*.{css,scss}": [
+      "prettier --write"
+    ],
+    "./*.{js,json}": [
+      "prettier --write"
     ]
   },
   "keywords": [],
