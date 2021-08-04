@@ -1,11 +1,6 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 
-const App = ({ name, lastName }) => (
-  <h1>
-    Hello
-    {name} {lastName}
-  </h1>
-)
+import App from './App'
 
-ReactDOM.render(<App name="Victor" lastName="Sanchez" />, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'))

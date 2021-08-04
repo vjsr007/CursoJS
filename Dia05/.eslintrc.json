@@ -1,47 +1,94 @@
 {
-  "extends": ["airbnb", "prettier"],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "plugins": ["prettier"],
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "prettier/prettier": ["error"],
-    "semi": ["error", "never"],
-    "linebreak-style": ["off"],
-    "no-unused-expressions": ["error", { "allowTernary": true, "allowShortCircuit": true }],
-    "react/forbid-prop-types": ["off"],
-    "react/jsx-one-expression-per-line": ["off"],
-    "react/jsx-wrap-multilines": ["error", { "prop": "ignore" }],
-    "no-nested-ternary": ["warn"],
-    "jsx-a11y/click-events-have-key-events": ["warn"],
-    "jsx-a11y/label-has-associated-control": ["off"],
-    "import/prefer-default-export": ["off"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/jsx-fragments": [0, "element"],
-    "react/state-in-constructor": 0,
-    "react/jsx-props-no-spreading": 0,
-    "no-param-reassign": [
-      "error",
-      {
-        "props": true,
-        "ignorePropertyModificationsFor": ["draft"]
-      }
+    "extends": [
+        "airbnb",
+        "prettier"
     ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-  }
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "prettier/prettier": [
+            "error"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "linebreak-style": [
+            "off"
+        ],
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowTernary": true,
+                "allowShortCircuit": true
+            }
+        ],
+        "react/forbid-prop-types": [
+            "off"
+        ],
+        "react/jsx-one-expression-per-line": [
+            "off"
+        ],
+        "react/jsx-wrap-multilines": [
+            "error",
+            {
+                "prop": "ignore"
+            }
+        ],
+        "no-nested-ternary": [
+            "warn"
+        ],
+        "jsx-a11y/click-events-have-key-events": [
+            "warn"
+        ],
+        "jsx-a11y/label-has-associated-control": [
+            "off"
+        ],
+        "import/prefer-default-export": [
+            "off"
+        ],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "react/jsx-fragments": [
+            0,
+            "element"
+        ],
+        "react/state-in-constructor": 0,
+        "react/jsx-props-no-spreading": 0,
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "draft"
+                ]
+            }
+        ],
+        "react-hooks/rules-of-hooks": 0
+    }
 }
