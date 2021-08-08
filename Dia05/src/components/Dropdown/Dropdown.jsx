@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 import styles from './dropdown.scss'
 
-const Dropdown = ({ data, defaultText, multiSelect, onChange }) => {
+const Dropdown = ({ options, defaultText, multiSelect, onChange }) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState([])
 
   const renderIcon = () =>
-    data !== null ? (
+    options !== null ? (
       <i
         id="toggleIcon"
         className={open ? styles.icon_triangule_up : styles.icon_triangule_down}
@@ -44,8 +44,8 @@ const Dropdown = ({ data, defaultText, multiSelect, onChange }) => {
   }
 
   const getOptions = () => {
-    if (!data) return ''
-    return data.map(option => (
+    if (!options) return ''
+    return options?.map(option => (
       <div
         title={option.name}
         id={`option_${option.id}`}
@@ -91,25 +91,31 @@ const Dropdown = ({ data, defaultText, multiSelect, onChange }) => {
   return (
     <div className={styles.component} onBlur={hide}>
       <button type="button" tabIndex={0} onClick={toggle}>
-        <input type="text" className={styles.input} placeholder={showPlaceholder()} readOnly />
+        <input
+          type="text"
+          className={styles.input}
+          title={showPlaceholder()}
+          placeholder={showPlaceholder()}
+          readOnly
+        />
         <div className={`${styles.button} ${styles.down}`}>{renderIcon()}</div>
       </button>
       <div className={`${styles.options} ${open ? styles.show : styles.hidden}`}>
-        {getOptions(data)}
+        {getOptions(options)}
       </div>
     </div>
   )
 }
 
 Dropdown.defaultProps = {
-  data: [],
+  options: [],
   defaultText: 'Select your option',
   multiSelect: false,
   onChange: () => {},
 }
 
 Dropdown.propTypes = {
-  data: PropTypes.array,
+  options: PropTypes.array,
   defaultText: PropTypes.string,
   multiSelect: PropTypes.bool,
   onChange: PropTypes.func,
