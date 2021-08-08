@@ -23,7 +23,7 @@ const FilterNav = () => {
       <CustomInput handleOnChange={showConsole} />
       <CustomInput handleOnChange={showConsole2} />
       <CustomInputClass />
-      <Dropdown data={lans} multiSelect />
+      <Dropdown options={lans} multiSelect />
       <Pager />
       <CustomButton />
     </div>
