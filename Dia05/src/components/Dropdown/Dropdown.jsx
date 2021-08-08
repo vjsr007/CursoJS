@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './dropdown.scss'
 
-const Dropdown = ({ data, defaultText, multiSelect, handleOnChange }) => {
+const Dropdown = ({ data, defaultText, multiSelect, onChange }) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState([])
 
@@ -27,10 +27,7 @@ const Dropdown = ({ data, defaultText, multiSelect, handleOnChange }) => {
     setOpen(!open)
   }
 
-  const showPlaceholder = () => {
-    const placeholder = selected?.length > 0 ? selected.join(', ') : defaultText
-    return placeholder
-  }
+  const showPlaceholder = () => (selected?.length > 0 ? selected.join(', ') : defaultText)
 
   const selectOption = option => {
     if (multiSelect) {
@@ -43,7 +40,7 @@ const Dropdown = ({ data, defaultText, multiSelect, handleOnChange }) => {
       setSelected([option.id])
       toggle()
     }
-    handleOnChange(selected)
+    onChange(selected)
   }
 
   const getOptions = () => {
@@ -106,16 +103,16 @@ const Dropdown = ({ data, defaultText, multiSelect, handleOnChange }) => {
 
 Dropdown.defaultProps = {
   data: [],
-  defaultText: 'input your text',
+  defaultText: 'Select your option',
   multiSelect: false,
-  handleOnChange: () => {},
+  onChange: () => {},
 }
 
 Dropdown.propTypes = {
   data: PropTypes.array,
   defaultText: PropTypes.string,
   multiSelect: PropTypes.bool,
-  handleOnChange: PropTypes.func,
+  onChange: PropTypes.func,
 }
 
 export default Dropdown
