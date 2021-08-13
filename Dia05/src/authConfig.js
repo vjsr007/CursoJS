@@ -15,7 +15,7 @@ const isFirefox = firefox > 0 // Only needed if you need to support the redirect
 export const msalConfig = {
   auth: {
     clientId: '43c1a3a5-305f-4d02-b140-f574d018854c',
-    authority: 'https://login.microsoftonline.com',
+    authority: 'https://login.microsoftonline.com/organizations',
     redirectUri: window.location.origin,
     postLogoutRedirectUri: window.location.href,
   },
