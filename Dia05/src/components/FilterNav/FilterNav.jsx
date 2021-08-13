@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import CustomInput from '../CustomInput'
 import Dropdown from '../Dropdown'
@@ -9,7 +10,7 @@ import styles from './filterNav.scss'
 import { lans } from '../../constants/constants'
 import CustomLabel from '../CustomLabel/CustomLabel'
 
-const FilterNav = () => (
+const FilterNav = ({ totalResults, changeNews }) => (
   <div className={styles.component}>
     <div className={styles.header}>
       <label className={styles.title}>News API</label>
@@ -26,10 +27,20 @@ const FilterNav = () => (
       <Dropdown options={lans} />
       <CustomLabel label="Sort by" />
       <Dropdown options={lans} />
-      <Pager />
+      <Pager numberOfItems={totalResults} onChange={changeNews} />
       <CustomButton />
     </div>
   </div>
 )
+
+FilterNav.defaultProps = {
+  totalResults: 0,
+  changeNews: () => {},
+}
+
+FilterNav.propTypes = {
+  totalResults: PropTypes.number,
+  changeNews: PropTypes.func,
+}
 
 export default FilterNav
