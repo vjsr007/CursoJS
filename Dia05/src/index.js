@@ -5,7 +5,7 @@ import React from 'react'
 import { PublicClientApplication, EventType } from '@azure/msal-browser'
 import { MsalProvider } from '@azure/msal-react'
 
-import { msalConfig } from './authConfig'
+import { msalConfig, loginRequest } from './authConfig'
 
 import App from './App'
 import './styles/global.scss'
@@ -16,7 +16,10 @@ const currentAccount = msalInstance.getActiveAccount()
 
 const validAuth = async () => {
   if (!currentAccount) {
-    msalInstance.handleRedirectPromise().then(() => msalInstance.loginRedirect())
+    msalInstance.handleRedirectPromise().then(async () => msalInstance.loginRedirect())
+  } else {
+    // save or get token
+    console.log('token', await msalInstance.acquireTokenSilent(loginRequest))
   }
 }
 

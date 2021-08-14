@@ -6,7 +6,7 @@ export const msalConfig = {
     postLogoutRedirectUri: window.location.href,
   },
   cache: {
-    sessionStorage: true,
+    localStorage: true,
   },
 }
 
