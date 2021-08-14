@@ -14,10 +14,6 @@ const News = () => {
     getNews({ query }).then(data => setArticles(data))
   }
 
-  useEffect(() => {
-    changeNews({})
-  }, [])
-
   return (
     <div className={styles.component}>
       <FilterNav totalResults={articles?.totalResults ?? 0} changeNews={changeNews} />
