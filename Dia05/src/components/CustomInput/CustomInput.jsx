@@ -3,24 +3,24 @@ import PropTypes from 'prop-types'
 
 import styles from './customInput.scss'
 
-const CustomInput = ({ handleOnChange, defaultTitle, defaultPlaceholder }) => (
+const CustomInput = ({ onChange, defaultTitle, defaultPlaceholder }) => (
   <input
     type="text"
     title={defaultTitle}
     placeholder={defaultPlaceholder}
-    onChange={handleOnChange}
+    onChange={onChange}
     className={styles.component}
   />
 )
 
 CustomInput.defaultProps = {
-  handleOnChange: () => {},
+  onChange: () => {},
   defaultTitle: 'input your text',
   defaultPlaceholder: 'input your text',
 }
 
 CustomInput.propTypes = {
-  handleOnChange: PropTypes.func,
+  onChange: PropTypes.func,
   defaultTitle: PropTypes.string,
   defaultPlaceholder: PropTypes.string,
 }

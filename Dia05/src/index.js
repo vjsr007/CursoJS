@@ -16,9 +16,11 @@ const currentAccount = msalInstance.getActiveAccount()
 
 const validAuth = async () => {
   if (!currentAccount) {
+    console.log('redirect')
     msalInstance.handleRedirectPromise().then(async () => msalInstance.loginRedirect())
   } else {
     // save or get token
+    console.log('getToken')
     console.log('token', await msalInstance.acquireTokenSilent(loginRequest))
   }
 }
@@ -28,6 +30,8 @@ msalInstance.addEventCallback(event => {
     const { account } = event.payload
     msalInstance.setActiveAccount(account)
   }
+
+  console.log('event', event)
 })
 
 validAuth()

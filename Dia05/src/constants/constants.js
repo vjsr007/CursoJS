@@ -26,3 +26,9 @@ export const lans = [
   { id: 'ud', name: 'ud' },
   { id: 'zh', name: 'zh' },
 ]
+
+export const sort = [
+  { id: 'relevancy', name: 'Relevancy' },
+  { id: 'popularity', name: 'Popularity' },
+  { id: 'publishedAt', name: 'PublishedAt' },
+]

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './dropdown.scss'
@@ -6,6 +6,10 @@ import styles from './dropdown.scss'
 const Dropdown = ({ options, defaultText, multiSelect, onChange }) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState([])
+
+  useEffect(() => {
+    onChange(selected)
+  }, [selected])
 
   const renderIcon = () =>
     options !== null ? (
@@ -40,7 +44,6 @@ const Dropdown = ({ options, defaultText, multiSelect, onChange }) => {
       setSelected([option.id])
       toggle()
     }
-    onChange(selected)
   }
 
   const getOptions = () => {

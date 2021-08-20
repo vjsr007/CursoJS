@@ -31,7 +31,7 @@ module.exports = () => {
       ],
     },
     devServer: {
-      port: 3002,
+      port: 8080,
       historyApiFallback: true,
       clientLogLevel: 'warn',
     },
