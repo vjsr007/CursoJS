@@ -15,6 +15,7 @@ const FilterNav = ({ totalResults, changeNews, setArticles }) => {
   const [sources, setSources] = useState([])
   const [filters, setFilters] = useState({
     page: 1,
+    sortBy: '',
   })
   const [tempFilters, setTempfilters] = useState(filters)
 
@@ -46,6 +47,49 @@ const FilterNav = ({ totalResults, changeNews, setArticles }) => {
     setTempfilters({ ...tempFilters, sources: selectedOptions.map(option => option).join(',') })
   }
 
+  const changeSortBy = selectedOptions => {
+    setTempfilters({ ...tempFilters, sortBy: selectedOptions[0] })
+  }
+
+  const changeLanguage = selectedOptions => {
+    setTempfilters({ ...tempFilters, language: selectedOptions[0] })
+  }
+
+  const addDays = (date, days) => {
+    const result = new Date(date)
+    result.setDate(result.getDate() + days)
+    return result
+  }
+
+  const formatDate = date => {
+    const d = new Date(date)
+    let month = `${d.getMonth() + 1}`
+    let day = `${d.getDate()}`
+    const year = d.getFullYear()
+
+    if (month.length < 2) month = `0${month}`
+    if (day.length < 2) day = `0${day}`
+
+    return [year, month, day].join('-')
+  }
+
+  const getRange = range => {
+    const today = new Date()
+    const to = today.toISOString()
+    switch (range) {
+      case 'week':
+        return { to, from: formatDate(addDays(today, -7).toISOString()) }
+      case 'month':
+        return { to, from: formatDate(addDays(today, -30).toISOString()) }
+      default:
+        return { to, from: formatDate(addDays(today, -1).toISOString()) }
+    }
+  }
+
+  const changeDate = selectedOptions => {
+    setTempfilters({ ...tempFilters, ...getRange(selectedOptions[0]) })
+  }
+
   return (
     <div className={styles.component}>
       <div className={styles.header}>
@@ -58,11 +102,11 @@ const FilterNav = ({ totalResults, changeNews, setArticles }) => {
         <CustomLabel label="Sources" />
         <Dropdown options={sources} multiSelect onChange={changeSources} />
         <CustomLabel label="Dates" />
-        <Dropdown options={dates} />
+        <Dropdown options={dates} onChange={changeDate} />
         <CustomLabel label="Languages" />
-        <Dropdown options={lans} />
+        <Dropdown options={lans} onChange={changeLanguage} />
         <CustomLabel label="Sort by" />
-        <Dropdown options={sort} />
+        <Dropdown options={sort} onChange={changeSortBy} />
         <Pager numberOfItems={totalResults} onChange={changePage} />
         <CustomButton onClick={updateFilters} label="Search" />
       </div>

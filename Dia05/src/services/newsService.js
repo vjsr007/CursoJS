@@ -11,7 +11,22 @@ export const getSources = () => {
   return get({ url })
 }
 
-export const changeNews = ({ page = 1, q = '*', sources = '' }) => {
-  const query = `q=${q}&page=${page}&sources=${sources}`
+const getRange = ({ to, from }) => {
+  if (!to || !from) return ''
+  return `&from=${from}&to=${to}`
+}
+
+export const changeNews = ({
+  page = 1,
+  q = '*',
+  sources = '',
+  sortBy = '',
+  language = '',
+  to = null,
+  from = null,
+}) => {
+  const query = `q=${q}&page=${page}&sources=${sources}&sortBy=${sortBy}&language=${language}${getRange(
+    { to, from }
+  )}`
   return getNews({ query })
 }
